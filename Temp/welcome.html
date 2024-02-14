@@ -1,0 +1,49 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="container rounded-3 border border-2 border-dark my-5 bg-white" style="height:auto;">
+            <div>
+                <h1 class="h1">To Do List</h1>
+                <div class="row">
+                    <div class="col-8">
+                        <input class="py-3 form-control shadow" placeholder="Add task" type="text" name="title"> 
+                    </div>
+                    <div class="col-2">
+                        <button class="mt-2 btn btn-dark" type="submit"> Add </button>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            {% for task in ress %}
+                <div class="row rounded bg-white flex flex-row">
+                    <h3 class="" id="list">{{ task.title }}</h3>
+                    <form action="{% url 'edit' sr=task.sr %}" method="get">
+                        {% csrf_token %}
+                        <button class="btn btn-dark">Edit</button>
+                    </form>
+                    <form action="{% url 'del' sr=task.sr %}" method="post">
+                        {% csrf_token %}
+                        <button class="btn btn-dark">Delete</button>
+                    </form>
+                </div>
+                <br>
+            {% endfor %}
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button class="btn btn-dark">Logout</button>
+            </form>
+        </div>
+    </form>
+</body>
+</html>
+*/
